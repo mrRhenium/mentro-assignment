@@ -12,6 +12,11 @@ const Page = () => {
       data[(avtarIndex + lgt) % lgt].rotate
     }deg)`;
 
+    const disc_bg = document.querySelector(".elliptical_bg");
+
+    disc_bg.style.backgroundColor =
+      (avtarIndex + lgt) % lgt & 1 ? "var(--color_bg1)" : "var(--color_bg2)";
+
     document.documentElement.style.setProperty(
       "--rt",
       `${-data[(avtarIndex + lgt) % lgt].rotate}deg`
@@ -37,12 +42,12 @@ const Page = () => {
         avtar.classList.add("active");
         setTimeout(() => {
           avtar.classList.remove("active");
-        }, 2000);
+        }, 800);
 
         avtar_name.classList.add("active");
         setTimeout(() => {
           avtar_name.classList.remove("active");
-        }, 2000);
+        }, 800);
       });
     });
 
