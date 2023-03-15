@@ -332,9 +332,8 @@
   border-radius: 0.8rem;
   border: 0.1rem solid white;
   background-color: rgba(0, 161, 7, 0.17);
-  /* animation: animate_avtar_name 0.8s ease-in-out; */
 }
-.container .right_part .lower_section .avtar .name.active p {
+.container .right_part .lower_section .avtar .name p.active {
   animation: animate_avtar_name 0.8s ease-in-out;
 }
 
