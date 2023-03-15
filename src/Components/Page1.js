@@ -1,66 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import data from "../Data";
 
-const Page = () => {
+const Page1 = () => {
   const [avtarIndex, upd_avtarIndex] = useState(0);
   let lgt = 5;
 
-  useEffect(() => {
-    const disc = document.querySelector(".disc");
-
-    disc.style.transform = `translate(15.3rem, 11rem) rotateZ(${
-      data[(avtarIndex + lgt) % lgt].rotate
-    }deg)`;
-
-    const disc_bg = document.querySelector(".elliptical_bg");
-
-    disc_bg.style.backgroundColor =
-      (avtarIndex + lgt) % lgt & 1 ? "var(--color_bg1)" : "var(--color_bg2)";
-
-    document.documentElement.style.setProperty(
-      "--rt",
-      `${-data[(avtarIndex + lgt) % lgt].rotate}deg`
-    );
-
-    const left_btn = document.querySelector(".lower_section .left_btn");
-    const right_btn = document.querySelector(".lower_section .right_btn");
-    // const btn = document.querySelectorAll(".lower_section .btn");
-
-    // const avtar = document.querySelector(".avtar .img");
-    // const avtar_name = document.querySelector(".avtar p");
-
-    left_btn.addEventListener("click", () => {
-      upd_avtarIndex(avtarIndex + 1);
-    });
-
-    right_btn.addEventListener("click", () => {
-      upd_avtarIndex(avtarIndex - 1);
-    });
-
-    // btn.forEach((item) => {
-    //   item.addEventListener("click", () => {
-    //     avtar.classList.add("active");
-    //     setTimeout(() => {
-    //       avtar.classList.remove("active");
-    //     }, 800);
-
-    //     avtar_name.classList.add("active");
-    //     setTimeout(() => {
-    //       avtar_name.classList.remove("active");
-    //     }, 800);
-    //   });
-    // });
-
-    return () => {
-      // clearTimeout(element);
-    };
-  }, [avtarIndex]);
+  document.documentElement.style.setProperty(
+    "--rt",
+    `${-data[avtarIndex].rotate}deg`
+  );
 
   return (
     <>
+      {/* <!-- Main Background --> */}
       <section className="container">
         {/* <!-- **Left Part** starts here--> */}
         <div className="left_part">
+          {/*  */}
           {data.map((item, index) => {
             if (index < 5)
               return (
@@ -95,28 +51,45 @@ const Page = () => {
                 </div>
               );
           })}
+          {/*  */}
         </div>
 
         {/* <!-- **Right Part** starts here--> */}
         <div className="right_part">
-          <div className="elliptical_bg">
-            <div className="disc">
-              {/*  */}
-              {data.map((item, index) => {
-                return (
-                  <span key={index} className="disc_items">
-                    <img src={item.img} alt={item.name} />
-                  </span>
-                );
-              })}
-              {/*  */}
+          <div className="upper_section">
+            <div
+              className="elliptical_bg"
+              style={{
+                backgroundColor:
+                  avtarIndex & 1 ? "var(--color_bg1)" : "var(--color_bg2)",
+              }}
+            >
+              <div
+                className="disc"
+                style={{
+                  transform: `translateY(43%) rotate(${data[avtarIndex].rotate}deg)`,
+                }}
+              >
+                {/*  */}
+                {data.map((item, index) => {
+                  return (
+                    <span key={index} className="disc_items">
+                      <img src={item.img} alt={item.name} />
+                    </span>
+                  );
+                })}
+                {/*  */}
+              </div>
             </div>
           </div>
 
           {/* <!-- lower section --> */}
           <div className="lower_section">
             {/* <!-- left button --> */}
-            <button className="btn left_btn">
+            <button
+              className="btn left_btn"
+              onClick={() => upd_avtarIndex((avtarIndex + 1) % lgt)}
+            >
               <i className="fa fa-long-arrow-down" aria-hidden="true"></i>
             </button>
 
@@ -137,7 +110,12 @@ const Page = () => {
             </div>
 
             {/* <!-- Right button  --> */}
-            <button className="btn right_btn">
+            <button
+              className="btn right_btn"
+              onClick={() =>
+                upd_avtarIndex((((avtarIndex - 1) % lgt) + lgt) % lgt)
+              }
+            >
               <i className="fa fa-long-arrow-down" aria-hidden="true"></i>
             </button>
           </div>
@@ -147,4 +125,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Page1;

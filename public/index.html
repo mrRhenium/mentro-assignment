@@ -16,5 +16,30 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <script>
+      setTimeout(() => {
+        const btn = document.querySelectorAll(".lower_section .btn");
+
+        const avtar = document.querySelector(".avtar .img");
+        const avtar_name = document.querySelector(".avtar p");
+
+        // console.log([btn, avtar, avtar_name]);
+
+        btn.forEach((item) => {
+          item.addEventListener("click", () => {
+            avtar.classList.add("active");
+            setTimeout(() => {
+              avtar.classList.remove("active");
+            }, 800);
+
+            avtar_name.classList.add("active");
+            setTimeout(() => {
+              avtar_name.classList.remove("active");
+            }, 800);
+          });
+        });
+      }, 1000);
+    </script>
   </body>
 </html>
