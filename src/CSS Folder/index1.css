@@ -333,9 +333,14 @@
   border: 0.1rem solid white;
   background-color: rgba(0, 161, 7, 0.17);
 }
-.container .right_part .lower_section .avtar .name p.active {
+
+.container .right_part .lower_section .btn:focus + .avtar .name p {
   animation: animate_avtar_name 0.8s ease-in-out;
 }
+
+/* .container .right_part .lower_section .avtar .name p.active {
+  animation: animate_avtar_name 0.8s ease-in-out;
+} */
 
 @keyframes animate_avtar_name {
   0% {
